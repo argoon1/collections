@@ -5,6 +5,7 @@ import { corsOptions } from "./config/corsConfig.js";
 import { setupMongoDB } from "./config/mongoConfig.js";
 import dotenv from "dotenv";
 import register from "./routes/register.js";
+import login from "./routes/login.js";
 import { credentials } from "./middlewares/credentials.js";
 dotenv.config();
 
@@ -19,4 +20,9 @@ app.use(
   "/register",
 
   register
+);
+app.use(
+  "/login",
+
+  login
 );

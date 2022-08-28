@@ -41,7 +41,6 @@ const useRegister = () => {
       navigate("/login");
     } catch (e) {
       handleReigsterError(e);
-      console.log((e as any).status);
     }
   }
   const {
