@@ -1,6 +1,6 @@
 const allowedOrigins = [
   "https://frozen-anchorage-58528.herokuapp.com/",
-  "http://localhost:3500",
+  "http://localhost:3000",
 ];
 
 const corsOptions = {
@@ -14,4 +14,4 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-export { corsOptions };
+export { corsOptions, allowedOrigins };

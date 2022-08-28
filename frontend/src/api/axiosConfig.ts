@@ -4,8 +4,8 @@ const BASE_URL =
     ? "http://localhost:3500/"
     : "https://frozen-anchorage-58528.herokuapp.com/";
 
-axios.create({
-  baseURL: BASE_URL,
+const axiosMain = axios.create({
+  baseURL: "http://localhost:3500/",
 });
 const axiosPrivate = axios.create({
   baseURL: BASE_URL,
@@ -13,4 +13,4 @@ const axiosPrivate = axios.create({
   withCredentials: true,
 });
 
-export { axios, axiosPrivate };
+export { axiosMain, axiosPrivate };

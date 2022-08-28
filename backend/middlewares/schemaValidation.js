@@ -1,4 +1,4 @@
-const validation = (schema) => async (req, res, next) => {
+const validateSchema = (schema) => async (req, res, next) => {
   try {
     await schema.validate(req.body);
     next();
@@ -6,3 +6,5 @@ const validation = (schema) => async (req, res, next) => {
     res.status(400).json({ error });
   }
 };
+
+export { validateSchema };

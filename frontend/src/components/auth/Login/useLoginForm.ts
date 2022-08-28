@@ -2,13 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { axios } from "../../api/axiosConfig";
+import { axiosMain } from "../../../api/axiosConfig";
 import { useState } from "react";
-const LOGIN_URL = "/session";
-type LoginData = {
-  email: string;
-  password: string;
-};
+import { AuthData } from "../authSharedTypes";
+const LOGIN_URL = "/login";
+
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required(),
@@ -21,23 +19,10 @@ const useLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginData>({
+  } = useForm<AuthData>({
     resolver: yupResolver(schema),
   });
-  async function submitLogin(data: LoginData) {
-    try {
-      await axios.post(LOGIN_URL, JSON.stringify(data), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
-      navigate("/login");
-    } catch (e) {
-      if (!e) {
-        setLoginError("no server response");
-      }
-      //handle duplicate/
-    }
-  }
+  async function submitLogin(data: AuthData) {}
 
   return {
     register,
