@@ -7,7 +7,9 @@ type PrivateRoutesProps = {
   allowedRoles: AllowedRoles;
 };
 const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
-  const { roles } = useAuth();
+  const {
+    userData: { roles },
+  } = useAuth();
   function userIsAllowed() {
     return roles?.some((role) => allowedRoles.includes(role));
   }

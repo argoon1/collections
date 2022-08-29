@@ -7,6 +7,7 @@ import { useState } from "react";
 import { AuthData } from "../authSharedTypes";
 import axios from "axios";
 import { getAxiosAuthOptions } from "../authUtils";
+import { useAuth } from "../../../Context/AuthProvider";
 const LOGIN_URL = "/login";
 
 const schema = yup.object().shape({
@@ -15,7 +16,9 @@ const schema = yup.object().shape({
 });
 
 const useLogin = () => {
+  const { setUserData } = useAuth();
   const navigate = useNavigate();
+  const { setPersist } = useAuth();
   const [loginError, setLoginError] = useState("");
   const {
     register,
@@ -43,8 +46,12 @@ const useLogin = () => {
   }
   async function submitLogin(data: AuthData) {
     try {
-      let x = await axiosMain.post(LOGIN_URL, ...getAxiosAuthOptions(data));
-      console.log("finished login, token: ", x.data);
+      const {
+        data: { accessToken, roles },
+      } = await axiosMain.post(LOGIN_URL, ...getAxiosAuthOptions(data));
+      setUserData({ accessToken, roles });
+      setPersist(true);
+      navigate("/collections");
     } catch (e) {
       handleLoginError(e);
     }

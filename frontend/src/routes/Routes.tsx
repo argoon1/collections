@@ -3,17 +3,22 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import NotFound from "../components/notFound/NotFound";
 import PrivateRoutes from "./PrivateRoutes";
+import Collections from "../pages/collections/Collections";
+import PersistLogin from "./PersistLogin";
 const Routes = () => {
   return (
     <Switch>
-      <Route path={"/"} element={<Login />} />
-      <Route path={"/Login"} element={<Login />} />
-      <Route path={"/Register"} element={<Register />} />
-      <Route element={<PrivateRoutes allowedRoles={["user", "admin"]} />}>
-        <Route path="/admin" element={<Login />} />
-      </Route>
+      <Route element={<PersistLogin />}>
+        <Route path={"/"} element={<Login />} />
+        <Route path={"/Login"} element={<Login />} />
+        <Route path={"/Register"} element={<Register />} />
+        <Route path={"/collections"} element={<Collections />} />
+        <Route element={<PrivateRoutes allowedRoles={["user", "admin"]} />}>
+          <Route path="/admin" element={<Login />} />
+        </Route>
 
-      <Route path={"/*"} element={<NotFound />} />
+        <Route path={"/*"} element={<NotFound />} />
+      </Route>
     </Switch>
   );
 };

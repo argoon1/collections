@@ -1,21 +1,41 @@
 import React, { useState, useContext } from "react";
 import { AllowedRoles } from "../sharedTypes/authTypes";
-type AuthStateType = {
+import { useLocalStorage } from "usehooks-ts";
+type UserData = {
   roles: AllowedRoles | null;
   accessToken: string | null;
 };
-type AuthProviderProps = { children: JSX.Element };
+type AuthStateType = {
+  userData: UserData;
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>;
+  persist: boolean;
+  setPersist: (persist: boolean) => void;
+};
+type AuthProviderProps = { children: JSX.Element | JSX.Element[] };
 const AuthContext = React.createContext<AuthStateType>({
-  roles: null,
-  accessToken: null,
+  userData: {
+    roles: null,
+    accessToken: null,
+  },
+  setUserData: () => {},
+  persist: false,
+  setPersist: () => {},
 });
 export const useAuth = () => useContext(AuthContext);
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [auth, setAuth] = useState<AuthStateType>({
+  const [persist, setPersist] = useLocalStorage("persist", false);
+  const [userData, setUserData] = useState<UserData>({
     roles: null,
     accessToken: null,
   });
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+  console.log("context");
+  return (
+    <AuthContext.Provider
+      value={{ userData, setUserData, persist, setPersist }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

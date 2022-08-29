@@ -13,6 +13,7 @@ async function registerUser(req, res) {
     await User.create({
       email,
       password: hashPassword,
+      roles: ["user"],
     });
 
     res.status(201).json({ message: "user has been created" });
