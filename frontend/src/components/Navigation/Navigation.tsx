@@ -1,9 +1,10 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import useNavigation from "./useNavigation";
 
 function Navigation() {
+  const { userExists, roles } = useNavigation();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -12,10 +13,19 @@ function Navigation() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/collections">collections</Nav.Link>
+            {userExists && (
+              <Nav.Link href="/collections"> my collections</Nav.Link>
+            )}
           </Nav>
           <Nav>
-            <Nav.Link href="/login">login</Nav.Link>
-            <Nav.Link href="/register">register</Nav.Link>
+            {userExists ? (
+              <>
+                <Nav.Link href="/login">login</Nav.Link>
+                <Nav.Link href="/register">register</Nav.Link>
+              </>
+            ) : (
+              <Nav.Link href="/register">register</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
