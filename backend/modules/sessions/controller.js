@@ -1,11 +1,10 @@
-import { handleRefreshToken, registerUser } from "../services";
+import { handleRefreshToken, loginUser } from "./services.js";
 import express from "express";
-const router = express.Router();
-import { registerUser } from "..././controllers/registerController.js";
-import { validateSchema } from "../../middlewares/schemaValidation.js";
 import { userSchema } from "../../validations/authValidation.js";
+import { validateSchema } from "../../middlewares/schemaValidation.js";
+const router = express.Router();
 
-router.post("/sessions", validateSchema(userSchema), registerUser);
+router.post("/", validateSchema(userSchema), loginUser);
 router.post("/refresh", validateSchema(userSchema), handleRefreshToken);
 
-export { router as usersRouter };
+export { router as sessionsRouter };

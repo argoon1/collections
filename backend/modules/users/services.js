@@ -1,8 +1,6 @@
-import { User } from "../models/User.model.js";
 import bcrypt from "bcrypt";
+import { User } from "../../models/User.model.js";
 
-import { User } from "../models/User.model.js";
-import bcrypt from "bcrypt";
 async function userAlreadyExists(email) {
   return await User.findOne({ email });
 }
