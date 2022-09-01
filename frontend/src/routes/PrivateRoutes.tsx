@@ -8,13 +8,14 @@ type PrivateRoutesProps = {
 };
 export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   const {
-    userData: { roles },
+    userData: { roles, accessToken },
   } = useAuth();
   function userIsAllowed() {
     return roles?.some((role) => allowedRoles.includes(role));
   }
-  if (userIsAllowed()) {
+  if (userIsAllowed() && accessToken) {
     return <Outlet />;
   }
+
   return <NotFound />;
 };
