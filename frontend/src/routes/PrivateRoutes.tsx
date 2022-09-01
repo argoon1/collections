@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NotFound from "../components/notFound/NotFound";
+import { NotFound } from "../components/notFound/NotFound";
 import { useAuth } from "../Context/AuthProvider";
 import { AllowedRoles } from "../sharedTypes/authTypes";
 type PrivateRoutesProps = {
   allowedRoles: AllowedRoles;
 };
-const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
+export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   const {
     userData: { roles },
   } = useAuth();
@@ -18,5 +18,3 @@ const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   }
   return <NotFound />;
 };
-
-export default PrivateRoutes;

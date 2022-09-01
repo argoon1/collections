@@ -22,7 +22,7 @@ const AuthContext = React.createContext<AuthStateType>({
   setPersist: () => {},
 });
 export const useAuth = () => useContext(AuthContext);
-const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [persist, setPersist] = useLocalStorage("persist", false);
   const [userData, setUserData] = useState<UserData>({
     roles: null,
@@ -37,5 +37,3 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;

@@ -1,10 +1,10 @@
 import { Routes as Switch, Route } from "react-router-dom";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import NotFound from "../components/notFound/NotFound";
-import PrivateRoutes from "./PrivateRoutes";
-import Collections from "../pages/collections/Collections";
-import PersistLogin from "./PersistLogin";
+import Login from "../pages/login/Login";
+import { Register } from "../pages/register/Register";
+import { NotFound } from "../components/notFound/NotFound";
+import { PrivateRoutes } from "./PrivateRoutes";
+import { Collections } from "../pages/collections/Collections";
+import { PersistLogin } from "./PersistLogin";
 const Routes = () => {
   return (
     <Switch>

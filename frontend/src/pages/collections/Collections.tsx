@@ -1,6 +1,4 @@
-import CollectionsList from "../../components/collections/collectionsList/CollectionsList";
-const Collections = () => {
+import { CollectionsList } from "../../components/collections/collectionsList/CollectionsList";
+export const Collections = () => {
   return <CollectionsList />;
 };
-
-export default Collections;

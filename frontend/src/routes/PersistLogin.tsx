@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useRefreshToken from "../hooks/useRefreshToken";
+import { useRefreshToken } from "../hooks/useRefreshToken";
 import { useAuth } from "../Context/AuthProvider";
-import NotFound from "../components/notFound/NotFound";
-const PersistLogin = () => {
+import { NotFound } from "../components/notFound/NotFound";
+export const PersistLogin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const refresh = useRefreshToken();
   const {
@@ -36,5 +36,3 @@ const PersistLogin = () => {
   }
   return <Outlet />;
 };
-
-export default PersistLogin;

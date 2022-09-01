@@ -1,8 +1,6 @@
 import { useAuth } from "../../../Context/AuthProvider";
-const Collections = () => {
+export const CollectionsList = () => {
   const { userData } = useAuth();
-  console.log(userData);
+
   return <div>Collections</div>;
 };
-
-export default Collections;

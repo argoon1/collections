@@ -1,5 +1,4 @@
 import express from "express";
-import bcrypt from "bcrypt";
 const router = express.Router();
 import { registerUser } from "../controllers/registerController.js";
 import { validateSchema } from "../middlewares/schemaValidation.js";

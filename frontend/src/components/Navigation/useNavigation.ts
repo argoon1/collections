@@ -1,6 +1,6 @@
 import { useAuth } from "../../Context/AuthProvider";
 import { AllowedRoles } from "../../sharedTypes/authTypes";
-const useNavigation = () => {
+export const useNavigation = () => {
   const {
     userData: { roles, accessToken },
   } = useAuth();
@@ -13,5 +13,3 @@ const useNavigation = () => {
     userHasRole,
   };
 };
-
-export default useNavigation;

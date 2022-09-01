@@ -1,7 +1,6 @@
-import React from "react";
 import useRegister from "./useRegisterForm";
 import { Container, Form, Alert, Button } from "react-bootstrap";
-const Register = () => {
+export const RegisterForm = () => {
   const { errorMessage, register, handleSubmit, errors, submitRegister } =
     useRegister();
   return (
@@ -34,5 +33,3 @@ const Register = () => {
     </Container>
   );
 };
-
-export default Register;

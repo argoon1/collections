@@ -1,11 +1,11 @@
 import { Alert } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import useLogin from "./useLoginForm";
+import { useLoginForm } from "./useLoginForm";
 import { Container } from "react-bootstrap";
-const LoginForm = () => {
+export const LoginForm = () => {
   const { register, handleSubmit, errors, submitLogin, loginError } =
-    useLogin();
+    useLoginForm();
   return (
     <Container className="mx-auto mt-5 " fluid="sm">
       <Form onSubmit={handleSubmit(submitLogin)}>
@@ -38,5 +38,3 @@ const LoginForm = () => {
     </Container>
   );
 };
-
-export default LoginForm;

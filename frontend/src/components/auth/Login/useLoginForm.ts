@@ -15,7 +15,7 @@ const schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-const useLogin = () => {
+export const useLoginForm = () => {
   const { setUserData } = useAuth();
   const navigate = useNavigate();
   const { setPersist } = useAuth();
@@ -65,5 +65,3 @@ const useLogin = () => {
     loginError,
   };
 };
-
-export default useLogin;

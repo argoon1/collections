@@ -1,6 +1,4 @@
-import RegisterForm from "../../components/auth/Register/RegisterForm";
-const Register = () => {
+import { RegisterForm } from "../../components/auth/Register/RegisterForm";
+export const Register = () => {
   return <RegisterForm />;
 };
-
-export default Register;

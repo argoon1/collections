@@ -1,7 +1,7 @@
 import { axiosPrivate } from "../api/axiosConfig";
 import { useAuth } from "../Context/AuthProvider";
 
-const useRefreshToken = () => {
+export const useRefreshToken = () => {
   const { setUserData } = useAuth();
 
   const refresh = async () => {
@@ -21,5 +21,3 @@ const useRefreshToken = () => {
   };
   return refresh;
 };
-
-export default useRefreshToken;
