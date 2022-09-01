@@ -2,9 +2,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigation } from "./useNavigation";
+import { Button } from "react-bootstrap";
 
 export function Navigation() {
-  const { userExists, roles, userHasRole } = useNavigation();
+  const { userExists, userHasRole, logout } = useNavigation();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -22,12 +23,12 @@ export function Navigation() {
           </Nav>
           <Nav>
             {userExists ? (
+              <Button onClick={logout}>Logout</Button>
+            ) : (
               <>
                 <Nav.Link href="/login">Login</Nav.Link>
                 <Nav.Link href="/register">Register</Nav.Link>
               </>
-            ) : (
-              <Nav.Link href="/register">Logout</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

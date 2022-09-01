@@ -9,13 +9,13 @@ const Routes = () => {
   return (
     <Switch>
       <Route element={<PersistLogin />}>
-        <Route path={"/"} element={<Login />} />
-        <Route path={"/Login"} element={<Login />} />
-        <Route path={"/Register"} element={<Register />} />
-        <Route path={"/collections"} element={<Collections />} />
         <Route element={<PrivateRoutes allowedRoles={["user", "admin"]} />}>
           <Route path="/admin" element={<Login />} />
         </Route>
+        <Route path={"/"} element={<Login />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/collections"} element={<Collections />} />
 
         <Route path={"/*"} element={<NotFound />} />
       </Route>

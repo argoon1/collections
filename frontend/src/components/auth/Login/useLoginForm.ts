@@ -8,7 +8,7 @@ import { AuthData } from "../authSharedTypes";
 import axios from "axios";
 import { getAxiosAuthOptions } from "../authUtils";
 import { useAuth } from "../../../Context/AuthProvider";
-const LOGIN_URL = "/login";
+const LOGIN_URL = "/sessions/login";
 
 const schema = yup.object().shape({
   email: yup.string().required().email(),
@@ -56,7 +56,6 @@ export const useLoginForm = () => {
       handleLoginError(e);
     }
   }
-
   return {
     register,
     handleSubmit,

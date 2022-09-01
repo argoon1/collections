@@ -18,5 +18,5 @@ app.use(express.json());
 app.listen(process.env.PORT || 3500, () => console.log("listening"));
 app.get("/", (req, res) => res.json("connected"));
 
-app.use("/sessions", usersRouter);
-app.use("/users", sessionsRouter);
+app.use("/users", usersRouter);
+app.use("/sessions", sessionsRouter);

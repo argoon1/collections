@@ -1,9 +1,10 @@
-import { Navigation } from "./components/Navigation/Navigation";
+import { Navigation } from "./components/navigation/Navigation";
 import { Search } from "./components/search/Search";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes/Routes";
-import { useAuth } from "./Context/AuthProvider";
 import { AuthProvider } from "./Context/AuthProvider";
+import { useEffect } from "react";
+import { useRefreshToken } from "./hooks/useRefreshToken";
 function App() {
   return (
     <BrowserRouter>

@@ -1,13 +1,11 @@
 import bcrypt from "bcrypt";
 import { User } from "../../models/User.model.js";
 
-async function userAlreadyExists(email) {
-  return await User.findOne({ email });
-}
 async function registerUser(req, res) {
   const { email, password } = req.body;
-  const userExists = await userAlreadyExists(email);
-  if (userExists) return res.status(409);
+
+  const user = await User.findOne({ email });
+  if (user) return res.status(409);
   try {
     const hashPassword = await bcrypt.hash(password, 10);
 

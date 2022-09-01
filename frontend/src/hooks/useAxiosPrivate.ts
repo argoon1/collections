@@ -45,3 +45,4 @@ const useAxiosPrivate = () => {
 
   return axiosPrivate;
 };
+export { useAxiosPrivate };

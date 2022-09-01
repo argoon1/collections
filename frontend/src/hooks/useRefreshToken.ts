@@ -5,12 +5,11 @@ export const useRefreshToken = () => {
   const { setUserData } = useAuth();
 
   const refresh = async () => {
-    const response = await axiosPrivate.get("/refresh", {
+    const response = await axiosPrivate.get("/sessions/refresh", {
       withCredentials: true,
     });
     const { roles, accessToken } = response.data;
     setUserData((prev) => {
-      console.log(prev);
       return {
         ...prev,
         roles,

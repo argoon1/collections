@@ -13,9 +13,9 @@ export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   function userIsAllowed() {
     return roles?.some((role) => allowedRoles.includes(role));
   }
+  console.log(accessToken);
   if (userIsAllowed() && accessToken) {
     return <Outlet />;
   }
-
   return <NotFound />;
 };
