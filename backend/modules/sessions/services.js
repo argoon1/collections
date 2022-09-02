@@ -1,10 +1,15 @@
 import { User } from "../../models/User.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 async function login(req, res) {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
   console.log(req.cookies.jwt);
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
   if (!user) return res.sendStatus(401);
   const isCorrectPassword = bcrypt.compare(password, user.password);
   if (isCorrectPassword) {
@@ -18,8 +23,14 @@ async function login(req, res) {
     const refreshToken = jwt.sign({ email }, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: "1d",
     });
-    user.refreshToken = refreshToken;
-    await user.save();
+    await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        refreshToken,
+      },
+    });
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       secure: true,
@@ -37,13 +48,13 @@ const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(401);
   const refreshToken = cookies.jwt;
-  console.log(cookies);
-  const user = await User.findOne({ refreshToken });
+  const user = await prisma.user.findFirst({
+    where: { refreshToken },
+  });
   if (!user) return res.sendStatus(403); //Forbidden
   const { email, password, roles } = user;
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
     if (err || user.username !== decoded.username) return res.sendStatus(403);
-    console.log(roles);
     const accessToken = jwt.sign(
       {
         email,
@@ -56,10 +67,16 @@ const handleRefreshToken = async (req, res) => {
   });
 };
 
-function logout(req, res) {
+async function logout(req, res) {
   const refreshToken = req.cookies.jwt;
-  const user = User.findOne({ refreshToken });
-  user.update({ refreshToken: "" });
+  await prisma.user.updateMany({
+    where: {
+      refreshToken,
+    },
+    data: {
+      refreshToken: "",
+    },
+  });
   res.clearCookie("jwt");
 
   res.sendStatus(204);
