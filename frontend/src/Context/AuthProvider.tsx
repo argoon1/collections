@@ -15,14 +15,16 @@ type UserData = {
   roles: AllowedRoles | null;
   accessToken: string | null;
 };
-type AuthStateType = {
+type AuthContextValue = {
   userData: UserData;
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
   persist: boolean;
   setPersist: (persist: boolean) => void;
 };
 type AuthProviderProps = { children: JSX.Element | JSX.Element[] };
-const AuthContext = React.createContext<AuthStateType>(initialAuthContextValue);
+const AuthContext = React.createContext<AuthContextValue>(
+  initialAuthContextValue
+);
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [persist, setPersist] = useLocalStorage("persist", false);

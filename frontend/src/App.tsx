@@ -3,15 +3,21 @@ import { Search } from "./components/search/Search";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes/Routes";
 import { AuthProvider } from "./Context/AuthProvider";
-import { useEffect } from "react";
-import { useRefreshToken } from "./hooks/useRefreshToken";
+import { CollectionsProvider } from "./Context/CollectionsProvider";
+import { axiosMain } from "./api/axiosConfig";
 function App() {
+  axiosMain.get("/users", {
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true,
+  });
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Navigation />
-        <Search />
-        <Routes />
+        <CollectionsProvider>
+          <Navigation />
+          <Search />
+          <Routes />
+        </CollectionsProvider>
       </AuthProvider>
     </BrowserRouter>
   );

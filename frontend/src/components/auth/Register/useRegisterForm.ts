@@ -9,7 +9,7 @@ import axios from "axios";
 import { AuthData } from "../authSharedTypes";
 import { getAxiosAuthOptions } from "../authUtils";
 
-const REGISTER_URL = "/users";
+const REGISTER_URL = "/users/register";
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required(),

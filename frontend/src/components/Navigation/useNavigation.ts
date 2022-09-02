@@ -10,7 +10,7 @@ export const useNavigation = () => {
     setUserData,
   } = useAuth();
   function userHasRole(role: Required<AllowedRoles>[number]) {
-    return roles && role in roles;
+    return roles && roles.includes(role);
   }
   const navigate = useNavigate();
   function logout() {
