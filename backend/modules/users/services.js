@@ -15,9 +15,10 @@ async function registerUser(req, res) {
         password: hashPassword,
         refreshToken: "",
         roles: ["user"],
+        blocked: false,
+        collections: [],
       },
     });
-    console.log(email, password);
     res.status(201).json({ message: "user has been created" });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -26,7 +27,8 @@ async function registerUser(req, res) {
 async function getUsers(req, res) {
   try {
     const users = await prisma.user.findMany({});
-    res.status(200).json({ users });
+    const toSendUsers = users.map((user) => ({ email: user.email }));
+    res.status(200).json({ users: toSendUsers });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

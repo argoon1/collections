@@ -16,7 +16,10 @@ export function Navigation() {
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/collections">Collections</Nav.Link>
             {userExists && (
-              <Nav.Link href="/collections"> My collections</Nav.Link>
+              <>
+                <Nav.Link href="/collections"> My collections</Nav.Link>
+                <Nav.Link href="/addcollection">Add collection</Nav.Link>
+              </>
             )}
             {userHasRole("admin") && (
               <Nav.Link href="/admindashboard">Dashboard</Nav.Link>

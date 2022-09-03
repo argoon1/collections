@@ -6,7 +6,7 @@ import { axiosMain } from "../../../api/axiosConfig";
 import { useState } from "react";
 import { AuthData } from "../authSharedTypes";
 import axios from "axios";
-import { getAxiosAuthOptions } from "../authUtils";
+import { getAxiosPostOptions } from "../../../utils/authUtils";
 import { useAuth } from "../../../Context/AuthProvider";
 const LOGIN_URL = "/sessions/login";
 
@@ -48,7 +48,7 @@ export const useLoginForm = () => {
     try {
       const {
         data: { accessToken, roles },
-      } = await axiosMain.post(LOGIN_URL, ...getAxiosAuthOptions(data));
+      } = await axiosMain.post(LOGIN_URL, ...getAxiosPostOptions(data));
       setUserData({ accessToken, roles });
       setPersist(true);
       navigate("/collections");

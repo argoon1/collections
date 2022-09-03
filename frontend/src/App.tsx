@@ -6,10 +6,6 @@ import { AuthProvider } from "./Context/AuthProvider";
 import { CollectionsProvider } from "./Context/CollectionsProvider";
 import { axiosMain } from "./api/axiosConfig";
 function App() {
-  axiosMain.get("/users", {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  });
   return (
     <BrowserRouter>
       <AuthProvider>

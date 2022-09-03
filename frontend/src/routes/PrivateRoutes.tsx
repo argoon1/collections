@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import { NotFound } from "../components/notFound/NotFound";
 import { useAuth } from "../Context/AuthProvider";
@@ -13,7 +12,6 @@ export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   function userIsAllowed() {
     return roles?.some((role) => allowedRoles.includes(role));
   }
-  console.log(accessToken);
   if (userIsAllowed() && accessToken) {
     return <Outlet />;
   }

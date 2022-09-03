@@ -7,7 +7,7 @@ import { axiosMain } from "../../../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthData } from "../authSharedTypes";
-import { getAxiosAuthOptions } from "../authUtils";
+import { getAxiosPostOptions } from "../../../utils/authUtils";
 
 const REGISTER_URL = "/users/register";
 const schema = yup.object().shape({
@@ -37,7 +37,7 @@ const useRegister = () => {
   }
   async function submitRegister(data: AuthData) {
     try {
-      await axiosMain.post(REGISTER_URL, ...getAxiosAuthOptions(data));
+      await axiosMain.post(REGISTER_URL, ...getAxiosPostOptions(data));
       navigate("/login");
     } catch (e) {
       handleReigsterError(e);

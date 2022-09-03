@@ -1,5 +1,7 @@
-import { UsersList } from "../../components/AdminDashboard/usersList/UsersList";
-
-export const AdminDashboard = () => {
-  return <UsersList />;
+import React from "react";
+import { UsersDashboard } from "../../components/usersDashboard/UsersDashboard";
+const AdminDashboard = () => {
+  return <UsersDashboard />;
 };
+
+export { AdminDashboard };

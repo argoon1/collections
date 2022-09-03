@@ -9,12 +9,21 @@ import {
   createNewCollection,
   addNewCollectionItem,
 } from "./servicesCollections.js";
+import {
+  deleteUsers,
+  blockUsers,
+  unblockUsers,
+} from "./servicesAdminActions.js";
 router.get("/", getUsers);
 
 router.post("/register", validateSchema(userSchema), registerUser);
+
 router.get("/collections/getone/:id", getCollection);
 router.get("/collections/all", getAllCollections);
-router.post("/collections/create", createNewCollection);
+router.post("/collections/add", createNewCollection);
 router.post("/collections/additem", addNewCollectionItem);
 
+router.post("/delete", deleteUsers);
+router.post("/unblock", unblockUsers);
+router.post("/block", blockUsers);
 export { router as usersRouter };

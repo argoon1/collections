@@ -11,6 +11,7 @@ async function login(req, res) {
   });
 
   if (!user) return res.sendStatus(401);
+  if (user.blocked) return res.sendStatus(401);
   const isCorrectPassword = bcrypt.compare(password, user.password);
   if (isCorrectPassword) {
     const accessToken = jwt.sign(

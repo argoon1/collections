@@ -12,4 +12,6 @@ model User {
   password String
   refreshToken String 
   roles String[]
+  blocked Boolean  
+  collections Json[]
 }
