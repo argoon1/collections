@@ -1,4 +1,4 @@
 import { CollectionsList } from "../../components/collections/collectionsList/CollectionsList";
-export const Collections = () => {
+export const Home = () => {
   return <CollectionsList />;
 };

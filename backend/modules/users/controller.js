@@ -8,6 +8,7 @@ import {
   getAllCollections,
   createNewCollection,
   addNewCollectionItem,
+  getUserCollections,
 } from "./servicesCollections.js";
 import {
   deleteUsers,
@@ -18,8 +19,9 @@ router.get("/", getUsers);
 
 router.post("/register", validateSchema(userSchema), registerUser);
 
-router.get("/collections/getone/:id", getCollection);
+router.get("/collections/collection/:id", getCollection);
 router.get("/collections/all", getAllCollections);
+router.get("/collections/usercollections", getUserCollections);
 router.post("/collections/add", createNewCollection);
 router.post("/collections/additem", addNewCollectionItem);
 

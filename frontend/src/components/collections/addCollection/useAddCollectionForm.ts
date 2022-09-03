@@ -6,6 +6,10 @@ import { useState } from "react";
 import { axiosMain } from "../../../api/axiosConfig";
 import axios from "axios";
 import { getAxiosPostOptions } from "../../../utils/authUtils";
+type CollectionDataRequired = {
+  name: string;
+  description: string;
+};
 const additionalFieldsNames = [
   "integer",
   "string",
@@ -13,11 +17,11 @@ const additionalFieldsNames = [
   "checkboxes",
   "date",
 ] as const;
-export type CollectionData = {
-  name: string;
-  description: string;
-} & Record<typeof additionalFieldsNames[number], string>;
-const REGISTER_URL = "/users/collections/add";
+export type AdditionalFieldsNames = typeof additionalFieldsNames[number];
+export type CollectionData = CollectionDataRequired &
+  Record<AdditionalFieldsNames, string>;
+export type CollectionDataFormatted = CollectionDataRequired &
+  Record<AdditionalFieldsNames, string[]>;
 const schema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().required(),
@@ -32,20 +36,19 @@ const useAddCollectionForm = () => {
     setAddCollectionFormError("registration failed");
   }
   async function submitCollection(data: CollectionData) {
-    //create custom validation
-
-    const formatedAdditionFieldsDataArray = Object.entries(data)
-      .map(([name, value]) => {
-        if (name === "description" || name === "name") return [name, value];
-        console.log(name);
-        return [name, value.split(",")];
-      })
-      .filter(([name, value]) => value[0]);
-    console.log(formatedAdditionFieldsDataArray, "dates");
-    // await axiosMain.post(
-    //   "/users/collections/add",
-    //   ...getAxiosPostOptions(data)
-    // );
+    const formatedAdditionFieldsData = Object.fromEntries(
+      Object.entries(data)
+        .map(([name, value]) => {
+          if (name === "description" || name === "name") return [name, value];
+          console.log(name);
+          return [name, value.split(",")];
+        })
+        .filter(([name, value]) => value[0])
+    );
+    await axiosMain.post(
+      "/users/collections/add",
+      ...getAxiosPostOptions(formatedAdditionFieldsData)
+    );
   }
   const {
     register,

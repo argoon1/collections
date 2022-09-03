@@ -1,6 +1,6 @@
 import { AuthData } from "../components/auth/authSharedTypes";
-import { CollectionData } from "../components/collections/addCollection/useAddCollectionForm";
-export function getAxiosPostOptions(data: AuthData | CollectionData) {
+import { CollectionDataFormatted } from "../components/collections/addCollection/useAddCollectionForm";
+export function getAxiosPostOptions(data: AuthData | CollectionDataFormatted) {
   return [
     JSON.stringify(data),
     {
