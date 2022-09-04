@@ -15,7 +15,9 @@ const useUserCollectionsList = () => {
   useEffect(() => {
     getUsersCollections();
   }, []);
-  return {};
+  return {
+    usersCollections,
+  };
 };
 
 export { useUserCollectionsList };

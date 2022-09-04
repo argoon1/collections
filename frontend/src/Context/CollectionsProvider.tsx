@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { useAuth } from "./AuthProvider";
 import { axiosMain } from "../api/axiosConfig";
 import { AdditionalFieldsNames } from "../components/collections/addCollection/useAddCollectionForm";
-import { useParams } from "react-router-dom";
 export type AdditionalFieldsCollection = Partial<
   Record<AdditionalFieldsNames, [string, string?, string?]>
 >;

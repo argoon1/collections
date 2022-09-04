@@ -23,7 +23,7 @@ router.get("/collections/collection/:id", getCollection);
 router.get("/collections/all", getAllCollections);
 router.get("/collections/usercollections", getUserCollections);
 router.post("/collections/add", createNewCollection);
-router.post("/collections/additem", addNewCollectionItem);
+router.post("/collections/collection/additem/:id", addNewCollectionItem);
 
 router.post("/delete", deleteUsers);
 router.post("/unblock", unblockUsers);

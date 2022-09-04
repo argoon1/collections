@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useState } from "react";
 import { axiosMain } from "../../../api/axiosConfig";
 import axios from "axios";
-import { getAxiosPostOptions } from "../../../utils/authUtils";
+import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 type CollectionDataRequired = {
   name: string;
   description: string;

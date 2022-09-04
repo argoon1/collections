@@ -7,7 +7,7 @@ import { axiosMain } from "../../../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthData } from "../authSharedTypes";
-import { getAxiosPostOptions } from "../../../utils/authUtils";
+import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 
 const REGISTER_URL = "/users/register";
 const schema = yup.object().shape({

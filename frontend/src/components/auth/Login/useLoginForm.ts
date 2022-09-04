@@ -6,7 +6,7 @@ import { axiosMain } from "../../../api/axiosConfig";
 import { useState } from "react";
 import { AuthData } from "../authSharedTypes";
 import axios from "axios";
-import { getAxiosPostOptions } from "../../../utils/authUtils";
+import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 import { useAuth } from "../../../Context/AuthProvider";
 const LOGIN_URL = "/sessions/login";
 

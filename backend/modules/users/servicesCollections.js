@@ -54,9 +54,40 @@ async function createNewCollection(req, res) {
       ],
     },
   });
-  console.log(req.body);
 }
-async function addNewCollectionItem(req, res) {}
+async function addNewCollectionItem(req, res) {
+  try {
+    const jwt = req.cookies.jwt;
+    const newItem = req.body;
+    const collectionId = req.params.id;
+    if (!jwt) return res.sendStatus(403);
+    const { collections } = await prisma.user.findFirst({
+      where: {
+        refreshToken: jwt,
+      },
+    });
+    const requestedCollection = collections.find(
+      (collection) => collection.id === collectionId
+    );
+    console.log(newItem);
+    const updatedCollections = [
+      ...collections.filter((collection) => collection.id !== collectionId),
+      {
+        ...requestedCollection,
+        items: [...requestedCollection.items, { ...newItem, id: v1() }],
+      },
+    ];
+    if (!requestedCollection) return res.sendStatus(404);
+    await prisma.user.updateMany({
+      where: {
+        refreshToken: jwt,
+      },
+      data: {
+        collections: updatedCollections,
+      },
+    });
+  } catch (e) {}
+}
 async function getUserCollections(req, res) {
   try {
     const jwt = req.cookies.jwt;

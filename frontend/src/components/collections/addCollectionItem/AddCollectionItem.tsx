@@ -10,10 +10,10 @@ const AddCollectionItem = () => {
   return (
     <Container className="mx-auto mt-5 " fluid="sm">
       <Form onSubmit={handleSubmit(submitItem)}>
-        <Form.Group className="mb-3" controlId="itemName">
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            {...register("itemName")}
+            {...register("name")}
             type="text"
             placeholder="Enter item's name..."
           />

@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosMain } from "../../../api/axiosConfig";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/AuthProvider";
+import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 const schema = yup.object().shape({
-  itemName: yup.string().required(),
+  name: yup.string().required(),
   description: yup.string(),
 });
 const {
@@ -20,7 +21,16 @@ const {
 
 const useAddCollectionItem = () => {
   const [addItemError, setAddItemError] = useState("");
-  function submitItem() {}
+  const { id } = useParams();
+  async function submitItem(data: any) {
+    console.log(data, "SUB");
+    try {
+      await axiosMain.post(
+        `/users/collections/collection/additem/${id}`,
+        ...getAxiosPostOptions(data)
+      );
+    } catch (e) {}
+  }
   return {
     register,
     handleSubmit,
