@@ -2,8 +2,13 @@ import { Container, Form, Alert, Button } from "react-bootstrap";
 import { useAddCollectionForm } from "./useAddCollectionForm";
 import { AddCollectionFormOptionalFields } from "./addCollectionFormOptionalFields/AddCollectionFormOptionalFields";
 const AddCollectionForm = () => {
-  const { register, handleSubmit, errors, submitCollection, errorMessage } =
-    useAddCollectionForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    submitCollection,
+    addCollectionFormError,
+  } = useAddCollectionForm();
   return (
     <Container className="mx-auto mt-5 w-25" fluid="sm">
       <Form onSubmit={handleSubmit(submitCollection)}>
@@ -32,7 +37,9 @@ const AddCollectionForm = () => {
         {Object.values(errors).map((data) => (
           <Alert variant="danger">{(data as any)?.message} </Alert>
         ))}
-        {errorMessage && <Alert variant={"danger"}>{errorMessage}</Alert>}
+        {addCollectionFormError && (
+          <Alert variant={"danger"}>{addCollectionFormError}</Alert>
+        )}
       </Form>
     </Container>
   );

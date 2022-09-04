@@ -7,6 +7,7 @@ import { credentials } from "./middlewares/credentials.js";
 import cookieParser from "cookie-parser";
 import { sessionsRouter } from "./modules/sessions/controller.js";
 import { usersRouter } from "./modules/users/controller.js";
+import { colectionsRouter } from "./modules/users/collections/controller";
 dotenv.config();
 
 app.use(credentials);
@@ -17,4 +18,5 @@ app.listen(process.env.PORT || 3500, () => console.log("listening"));
 app.get("/", (req, res) => res.json("connected"));
 
 app.use("/users", usersRouter);
+app.use("/users/collections/", colectionsRouter);
 app.use("/sessions", sessionsRouter);

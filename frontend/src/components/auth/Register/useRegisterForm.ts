@@ -56,7 +56,7 @@ const useRegister = () => {
     handleSubmit,
     errors,
     submitRegister,
-    errorMessage: "",
+    registerError,
   };
 };
 

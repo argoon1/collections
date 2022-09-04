@@ -1,34 +1,18 @@
 import useRegister from "./useRegisterForm";
 import { Container, Form, Alert, Button } from "react-bootstrap";
+import { FormErrors } from "../../formErrors/FormErrors";
+import { AuthRequiredFormFields } from "../authRequiredFormFields/AuthRequiredFormFields";
 export const RegisterForm = () => {
-  const { errorMessage, register, handleSubmit, errors, submitRegister } =
+  const { registerError, register, handleSubmit, errors, submitRegister } =
     useRegister();
   return (
     <Container className="mx-auto mt-5 w-25" fluid="sm">
       <Form onSubmit={handleSubmit(submitRegister)}>
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            {...register("email")}
-            type="email"
-            placeholder="Enter email ..."
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password ..."
-            {...register("password")}
-          />
-        </Form.Group>
+        <AuthRequiredFormFields register={register} />
         <Button variant="primary" type="submit" className="w-100">
           Register
         </Button>
-        {Object.values(errors).map((data) => (
-          <Alert variant="danger">{(data as any)?.message} </Alert>
-        ))}
-        {errorMessage && <Alert variant={"danger"}>{errorMessage}</Alert>}
+        <FormErrors errors={errors} fetchError={registerError} />
       </Form>
     </Container>
   );

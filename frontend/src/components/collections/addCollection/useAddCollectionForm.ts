@@ -6,6 +6,7 @@ import { useState } from "react";
 import { axiosMain } from "../../../api/axiosConfig";
 import axios from "axios";
 import { getAxiosPostOptions } from "../../../utils/axiosUtils";
+const ADD_COLLECTION = "/users/collections/add";
 type CollectionDataRequired = {
   name: string;
   description: string;
@@ -33,22 +34,29 @@ const useAddCollectionForm = () => {
       setAddCollectionFormError("invalid data");
       return;
     }
-    setAddCollectionFormError("registration failed");
+    setAddCollectionFormError("adding item  failed");
   }
-  async function submitCollection(data: CollectionData) {
-    const formatedAdditionFieldsData = Object.fromEntries(
+  function getFormatedAdditionFieldsData(data: CollectionData) {
+    return Object.fromEntries(
       Object.entries(data)
         .map(([name, value]) => {
           if (name === "description" || name === "name") return [name, value];
           console.log(name);
-          return [name, value.split(",")];
+          return [name, value.match(/[^,][a-zA-Z\s]+/gi)];
         })
-        .filter(([name, value]) => value[0])
+        .filter(([_, value]) => value && value[0])
     );
-    await axiosMain.post(
-      "/users/collections/add",
-      ...getAxiosPostOptions(formatedAdditionFieldsData)
-    );
+  }
+  async function submitCollection(data: CollectionData) {
+    const formatedAdditionFieldsData = getFormatedAdditionFieldsData(data);
+    try {
+      await axiosMain.post(
+        ADD_COLLECTION,
+        ...getAxiosPostOptions(formatedAdditionFieldsData)
+      );
+    } catch (e) {
+      handleCollectionError(e);
+    }
   }
   const {
     register,
@@ -63,7 +71,7 @@ const useAddCollectionForm = () => {
     handleSubmit,
     errors,
     submitCollection,
-    errorMessage: "",
+    addCollectionFormError,
   };
 };
 
