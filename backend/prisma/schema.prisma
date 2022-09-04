@@ -13,5 +13,6 @@ model User {
   refreshToken String 
   roles String[]
   blocked Boolean  
+  likedItems String[]
   collections Json[]
 }

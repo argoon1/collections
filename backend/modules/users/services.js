@@ -17,6 +17,7 @@ async function registerUser(req, res) {
         roles: ["user"],
         blocked: false,
         collections: [],
+        likedItems: [],
       },
     });
     res.status(201).json({ message: "user has been created" });

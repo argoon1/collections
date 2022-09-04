@@ -1,11 +1,13 @@
 import { Item } from "../../../../Context/CollectionsProvider";
 import { Card } from "react-bootstrap";
+import { CollectionItemLikes } from "./collectionLikes/CollectionItemLikes";
 type CollectionItemProps = {
   isUserOwner: boolean;
   item: Item;
 };
 const CollectionItem = ({ isUserOwner, item }: CollectionItemProps) => {
   const { likes, comments, id, name, tags, ...itemAdditionalFields } = item;
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -18,7 +20,8 @@ const CollectionItem = ({ isUserOwner, item }: CollectionItemProps) => {
         })}
       </Card.Body>
       {comments}
-      {likes}
+      <CollectionItemLikes likes={likes} itemId={id} />
+      {isUserOwner && "enable edit"}
     </Card>
   );
 };

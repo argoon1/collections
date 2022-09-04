@@ -9,6 +9,7 @@ import {
   createNewCollection,
   addNewCollectionItem,
   getUserCollections,
+  likeCollectionItem,
 } from "./servicesCollections.js";
 import {
   deleteUsers,
@@ -24,6 +25,7 @@ router.get("/collections/all", getAllCollections);
 router.get("/collections/usercollections", getUserCollections);
 router.post("/collections/add", createNewCollection);
 router.post("/collections/collection/additem/:id", addNewCollectionItem);
+router.post("/collections/like/:id", likeCollectionItem);
 
 router.post("/delete", deleteUsers);
 router.post("/unblock", unblockUsers);

@@ -42,11 +42,12 @@ const useAddCollectionItem = (id: string) => {
     setAddItemError("login failed");
   }
   async function submitItem(data: any) {
-    console.log(data, "ss");
+    const { tags } = data;
+    //validate tags seperated by coma
     try {
       await axiosMain.post(
         `/users/collections/collection/additem/${id}`,
-        ...getAxiosPostOptions(data)
+        ...getAxiosPostOptions({ ...data, tags: tags.split(",") })
       );
       console.log(data);
     } catch (e) {}

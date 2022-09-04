@@ -6,6 +6,7 @@ import { AddCollectionItem } from "./addCollectionItem/AddCollectionItem";
 const Collection = () => {
   const { requestedCollection, isUserOwner } = useCollection();
   if (!requestedCollection) return <Loading />;
+  alert("hi");
   const { name, description, topic, id, items, ...additionalFields } =
     requestedCollection;
   return (
