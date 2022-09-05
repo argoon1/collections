@@ -2,7 +2,7 @@ import { Alert } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
-import useAddCollectionItem from "./useAddCollectionItem";
+import { useAddCollectionItem } from "./useAddCollectionItem";
 
 const AddCollectionItem = () => {
   const { register, handleSubmit, errors, submitItem, addItemError } =
@@ -27,12 +27,9 @@ const AddCollectionItem = () => {
             placeholder="Enter item's description..."
           />
         </Form.Group>
-        {
-          // create additional field
-        }
 
         <Button variant="primary" type="submit" className="w-100">
-          Login
+          Add item
         </Button>
         {Object.values(errors).map((data) => (
           <Alert variant="danger">{(data as any)?.message} </Alert>

@@ -7,7 +7,7 @@ import { credentials } from "./middlewares/credentials.js";
 import cookieParser from "cookie-parser";
 import { sessionsRouter } from "./modules/sessions/controller.js";
 import { usersRouter } from "./modules/users/controller.js";
-import { colectionsRouter } from "./modules/users/collections/controller";
+import { colectionsRouter } from "./modules/users/collections/controller.js";
 dotenv.config();
 
 app.use(credentials);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { AdditionalFieldsCollection } from "../../../../Context/CollectionsProvider";
+import { AdditionalFieldsCollection } from "../../../../sharedTypes/collectionSharedTypes";
 import { Alert } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
@@ -27,7 +27,7 @@ const AddCollectionItem = ({
             placeholder="enter name..."
           />
           <Form.Group className="mb-3" controlId="tags">
-            <Form.Label>{"tags"}</Form.Label>
+            <Form.Label>tags seperated by commas</Form.Label>
             <Form.Control
               {...register("tags")}
               type="text"

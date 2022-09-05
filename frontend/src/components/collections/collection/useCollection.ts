@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { axiosMain } from "../../../api/axiosConfig";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { Collection } from "../../../Context/CollectionsProvider";
+import { Collection } from "../../../sharedTypes/collectionSharedTypes";
 const useCollection = () => {
   const [requestedCollection, setRequestedCollection] =
     useState<null | Collection>(null);

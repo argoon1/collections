@@ -40,4 +40,4 @@ const useAddCollectionItem = () => {
   };
 };
 
-export default useAddCollectionItem;
+export { useAddCollectionItem };

@@ -1,14 +1,14 @@
-import { registerUser, getUsers } from "../services.js";
+import { registerUser, getUsers } from "./services.js";
 import express from "express";
 const router = express.Router();
-import { validateSchema } from "../../../middlewares/schemaValidation.js";
-import { userSchema } from "../../../validations/authValidation.js";
+import { validateSchema } from "../../middlewares/schemaValidation.js";
+import { userSchema } from "../../validations/authValidation.js";
 
 import {
   deleteUsers,
   blockUsers,
   unblockUsers,
-} from "../servicesAdminActions.js";
+} from "./servicesAdminActions.js";
 router.get("/", getUsers);
 
 router.post("/register", validateSchema(userSchema), registerUser);

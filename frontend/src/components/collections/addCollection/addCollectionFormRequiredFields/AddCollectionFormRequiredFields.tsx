@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap";
 import { CollectionData } from "../useAddCollectionForm";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 
-export interface MyProps {
+interface MyProps {
   register: UseFormRegister<FieldValues & CollectionData>;
 }
 const AddCollectionFormRequiredFields = ({ register }: MyProps) => {

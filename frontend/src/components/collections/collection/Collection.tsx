@@ -1,12 +1,10 @@
-import { useCollections } from "../../../Context/CollectionsProvider";
 import { useCollection } from "./useCollection";
-import { CollectionItem } from "./collectionItem/CollectionItem";
+import { CollectionItem } from "./collectionItem/collectionListItem/CollectionListItem";
 import { Loading } from "../../loading/Loading";
 import { AddCollectionItem } from "./addCollectionItem/AddCollectionItem";
 const Collection = () => {
   const { requestedCollection, isUserOwner } = useCollection();
   if (!requestedCollection) return <Loading />;
-  alert("hi");
   const { name, description, topic, id, items, ...additionalFields } =
     requestedCollection;
   return (

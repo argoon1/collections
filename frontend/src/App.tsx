@@ -3,18 +3,20 @@ import { Search } from "./components/search/Search";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes/Routes";
 import { AuthProvider } from "./Context/AuthProvider";
-import { CollectionsProvider } from "./Context/CollectionsProvider";
-import { axiosMain } from "./api/axiosConfig";
+import { BackgroundTheme } from "./components/backgroundTheme/BackgroundTheme";
+import { CollectionItemProvider } from "./Context/CollectionItemProvider";
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <CollectionsProvider>
-          <Navigation />
-          <Search />
-          <Routes />
-        </CollectionsProvider>
-      </AuthProvider>
+      <BackgroundTheme>
+        <AuthProvider>
+          <CollectionItemProvider>
+            <Navigation />
+            <Search />
+            <Routes />
+          </CollectionItemProvider>
+        </AuthProvider>
+      </BackgroundTheme>
     </BrowserRouter>
   );
 }

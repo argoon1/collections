@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AllowedRoles } from "../sharedTypes/authTypes";
 import { useLocalStorage } from "usehooks-ts";
+import { ContextProviderProps } from "./contextSharedTypes";
 export const initialUserData = {
   roles: null,
   accessToken: null,
@@ -11,6 +12,7 @@ export const initialAuthContextValue = {
   persist: false,
   setPersist: () => {},
 };
+
 type UserData = {
   roles: AllowedRoles | null;
   accessToken: string | null;
@@ -21,12 +23,12 @@ type AuthContextValue = {
   persist: boolean;
   setPersist: (persist: boolean) => void;
 };
-type AuthProviderProps = { children: JSX.Element | JSX.Element[] };
+
 const AuthContext = React.createContext<AuthContextValue>(
   initialAuthContextValue
 );
 export const useAuth = () => useContext(AuthContext);
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: ContextProviderProps) => {
   const [persist, setPersist] = useLocalStorage("persist", false);
   const [userData, setUserData] = useState<UserData>({
     roles: null,

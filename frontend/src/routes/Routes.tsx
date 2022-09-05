@@ -9,6 +9,7 @@ import { AdminDashboard } from "../pages/adminDashboard/AdminDashboard";
 import { AddCollection } from "../pages/addCollection/AddCollection";
 import { UserCollections } from "../pages/userCollections/UserCollections";
 import { CollectionItems } from "../pages/collectionItems/CollectionItems";
+import { CollectionItemDetailed } from "../components/collections/collection/collectionItem/collectionItemDetailed/CollectionItemDetailed";
 const Routes = () => {
   return (
     <Switch>
@@ -25,7 +26,10 @@ const Routes = () => {
         <Route path={"/register"} element={<Register />} />
         <Route path={"/home"} element={<Home />} />
         <Route path="/collection/:id" element={<CollectionItems />} />
-
+        <Route
+          path="/collections/collection/item/:itemId"
+          element={<CollectionItemDetailed />}
+        />
         <Route path={"/*"} element={<NotFound />} />
       </Route>
     </Switch>

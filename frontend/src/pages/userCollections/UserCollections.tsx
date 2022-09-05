@@ -1,7 +1,6 @@
-import { UserCollectionsList } from "../../components/collections/userCollectionsList/UserCollectionsList";
-
+import { CollectionsList } from "../../components/collections/collectionsList/CollectionsList";
 const UserCollections = () => {
-  return <UserCollectionsList />;
+  return <CollectionsList />;
 };
 
 export { UserCollections };
