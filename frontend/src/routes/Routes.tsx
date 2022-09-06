@@ -24,6 +24,7 @@ const Routes = () => {
         </Route>
         <Route path={"/login"} element={<UserLogin />} />
         <Route path={"/register"} element={<UserRegister />} />
+        <Route path={"/"} element={<Home />} />
         <Route path={"/home"} element={<Home />} />
         <Route path="/collection/:id" element={<CollectionItems />} />
         <Route
