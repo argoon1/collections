@@ -5,7 +5,7 @@ const BASE_URL =
     : "https://frozen-anchorage-58528.herokuapp.com/";
 
 const axiosMain = axios.create({
-  baseURL: "http://localhost:3500/",
+  baseURL: BASE_URL,
 });
 const axiosPrivate = axios.create({
   baseURL: BASE_URL,
