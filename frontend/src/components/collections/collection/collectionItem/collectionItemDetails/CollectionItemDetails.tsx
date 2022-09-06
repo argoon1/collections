@@ -1,6 +1,7 @@
-import React from "react";
+import { ListGroup } from "react-bootstrap";
 import { AdditionalFieldsItem } from "../../../../../sharedTypes/collectionSharedTypes";
 import { AddNewCommentForm } from "./addNewCommentForm/AddNewCommentForm";
+import styles from "./collectionItemDetails.module.css";
 type CollectionItemDetailsProps = {
   itemAdditionalFields: AdditionalFieldsItem;
   comments: string[];
@@ -11,13 +12,15 @@ const CollectionItemDetails = ({
 }: CollectionItemDetailsProps) => {
   return (
     <>
-      {Object.entries(itemAdditionalFields).flatMap(([key, value]) => {
-        if (key === "string" || key === "date") return undefined;
-        return Object.entries(value).map(([key, value]) => key + " " + value);
+      {Object.entries(itemAdditionalFields).map(([key, value], idx) => {
+        return <p key={idx}>{`${key}: ${value}`}</p>;
       })}{" "}
-      {comments.map((comment) => (
-        <p>{comment}</p>
-      ))}
+      <h3>Comments</h3>
+      <ListGroup>
+        {comments.map((comment, idx) => (
+          <ListGroup.Item key={idx}>{comment}</ListGroup.Item>
+        ))}
+      </ListGroup>
       <AddNewCommentForm />
     </>
   );

@@ -6,7 +6,7 @@ const useCollectionsList = () => {
   const [collections, setCollections] = useState<null | Collection[]>(null);
   const { pathname } = useLocation();
   const USER_COLLECTIONS = "users/collections/usercollections";
-  const LARGEST_COLLECTIONS = "users/collections/largest";
+  const LARGEST_COLLECTIONS = "users/collections/largestcollections";
   function isHomePage() {
     return pathname.includes("home");
   }

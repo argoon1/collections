@@ -14,7 +14,7 @@ import {
 router.get("/collection/:id", getCollection);
 router.get("/usercollections", getUserCollections);
 router.get("/collection/item/:id", getCollectionItem);
-router.get("/largest", getLargestCollections);
+router.get("/largestcollections", getLargestCollections);
 router.post("/add", createNewCollection);
 router.post("/collection/additem/:id", addNewCollectionItem);
 router.post("/comment/:id", addComment);

@@ -53,7 +53,7 @@ function getItemOwner(users, itemId) {
   );
 }
 function getNewLikedItems(itemAlreadyLiked, likedItems, itemId) {
-  itemAlreadyLiked
+  return itemAlreadyLiked
     ? likedItems.filter((id) => id !== itemId)
     : [...likedItems, itemId];
 }
@@ -86,6 +86,26 @@ function getLargestCollectionsList(users) {
     .slice(0, 5);
 }
 
+async function updateLoggedUser(jwt, field, newData) {
+  return prisma.user.updateMany({
+    where: {
+      refreshToken: jwt,
+    },
+    data: {
+      [field]: newData,
+    },
+  });
+}
+async function updateUserById(id, field, newData) {
+  return prisma.user.update({
+    where: {
+      id: id,
+    },
+    data: {
+      [field]: newData,
+    },
+  });
+}
 export {
   getLoggedUser,
   getIsUserItemOwner,
@@ -97,4 +117,6 @@ export {
   getRequestedCollectionItem,
   getLargestCollectionsList,
   getCollectionWithUpdatedItem,
+  updateLoggedUser,
+  updateUserById,
 };

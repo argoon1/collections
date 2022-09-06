@@ -2,6 +2,7 @@ import { useCollection } from "./useCollection";
 import { CollectionItem } from "./collectionItem/collectionListItem/CollectionListItem";
 import { Loading } from "../../loading/Loading";
 import { AddCollectionItem } from "./addCollectionItem/AddCollectionItem";
+import { Container } from "react-bootstrap";
 const Collection = () => {
   const { requestedCollection, isUserOwner, getRequestedCollection } =
     useCollection();
@@ -16,13 +17,21 @@ const Collection = () => {
       {isUserOwner && (
         <AddCollectionItem id={id} additionalFields={additionalFields} />
       )}
-      {items.map((item) => (
-        <CollectionItem
-          item={item}
-          isUserOwner
-          getData={getRequestedCollection}
-        />
-      ))}
+      <Container
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "40px",
+        }}
+      >
+        {items.map((item) => (
+          <CollectionItem
+            item={item}
+            isUserOwner
+            getData={getRequestedCollection}
+          />
+        ))}
+      </Container>
     </>
   );
 };

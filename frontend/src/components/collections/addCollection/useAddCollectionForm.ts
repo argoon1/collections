@@ -10,6 +10,7 @@ const ADD_COLLECTION = "/users/collections/add";
 type CollectionDataRequired = {
   name: string;
   description: string;
+  topic: string;
 };
 const additionalFieldsNames = [
   "integer",
@@ -26,6 +27,7 @@ export type CollectionDataFormatted = CollectionDataRequired &
 const schema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().required(),
+  topic: yup.string().required(),
 });
 const useAddCollectionForm = () => {
   const [addCollectionFormError, setAddCollectionFormError] = useState("");
@@ -63,6 +65,9 @@ const useAddCollectionForm = () => {
     formState: { errors },
   } = useForm<CollectionData>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      topic: "Books",
+    },
   });
 
   return {

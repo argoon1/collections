@@ -12,6 +12,8 @@ import {
   getRequestedCollectionItem,
   getLargestCollectionsList,
   getCollectionWithUpdatedItem,
+  updateLoggedUser,
+  updateUserById,
 } from "./collectionsServicesUtils.js";
 async function getCollection(req, res) {
   const jwt = req.cookies.jwt;
@@ -39,17 +41,10 @@ async function createNewCollection(req, res) {
     const jwt = req.cookies.jwt;
     const newCollectionData = req.body;
     const { collections } = await getLoggedUser(jwt);
-    await prisma.user.updateMany({
-      where: {
-        refreshToken: jwt,
-      },
-      data: {
-        collections: [
-          ...collections,
-          { ...newCollectionData, items: [], id: v1() },
-        ],
-      },
-    });
+    await updateLoggedUser(jwt, "collections", [
+      ...collections,
+      { ...newCollectionData, items: [], id: v1() },
+    ]);
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -71,14 +66,7 @@ async function addNewCollectionItem(req, res) {
       requestedCollection
     );
     if (!requestedCollection) return res.sendStatus(404);
-    await prisma.user.updateMany({
-      where: {
-        refreshToken: jwt,
-      },
-      data: {
-        collections: updatedCollections,
-      },
-    });
+    await updateLoggedUser(jwt, "collections", updatedCollections);
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -97,7 +85,6 @@ async function likeCollectionItem(req, res) {
   const jwt = req.cookies.jwt;
   if (!jwt) return res.sendStatus(403);
   if (!itemId) return res.sendStatus(404);
-
   try {
     const { likedItems } = await getLoggedUser(jwt);
     const users = await prisma.user.findMany({});
@@ -111,36 +98,24 @@ async function likeCollectionItem(req, res) {
       likedItems,
       itemId
     );
-    const collectionWithComment = getCollectionWithItem(collections, itemId);
+    const collectionWithLike = getCollectionWithItem(collections, itemId);
 
     const updatedCollectionWithLike = getCollectionWithUpdatedItem(
-      collectionWithComment,
+      collectionWithLike,
       itemId,
       "likes",
       (likes) => likes + (itemAlreadyLiked ? -1 : 1)
     );
+
     const removeLikedCollectionCollections = collections.filter((collection) =>
       collection.items.every((item) => item.id !== itemId)
     );
-    await prisma.user.update({
-      where: {
-        id: requestedItemOwnerId,
-      },
-      data: {
-        collections: [
-          ...removeLikedCollectionCollections,
-          updatedCollectionWithLike,
-        ],
-      },
-    });
-    await prisma.user.updateMany({
-      where: {
-        refreshToken: jwt,
-      },
-      data: {
-        likedItems: newLikedItems,
-      },
-    });
+    await updateUserById(requestedItemOwnerId, "collections", [
+      ...removeLikedCollectionCollections,
+      updatedCollectionWithLike,
+    ]);
+
+    await updateLoggedUser(jwt, "likedItems", newLikedItems);
 
     res.sendStatus(204);
   } catch (e) {
@@ -149,18 +124,15 @@ async function likeCollectionItem(req, res) {
 }
 async function getCollectionItem(req, res) {
   try {
-    console.log("start");
     const requestedItemId = req.params.id;
     const jwt = req.cookies.jwt;
     const users = await prisma.user.findMany({});
     const requestedItem = getRequestedCollectionItem(requestedItemId, users);
 
     const isUserOwner = getIsUserItemOwner(jwt, users, requestedItemId);
-    console.log(requestedItem);
     if (!requestedItem) return res.sendStatus(404);
     return res.status(200).json({ item: requestedItem, isUserOwner });
   } catch (e) {
-    console.log(e.message);
     res.status(500).json({ message: e.message });
   }
 }

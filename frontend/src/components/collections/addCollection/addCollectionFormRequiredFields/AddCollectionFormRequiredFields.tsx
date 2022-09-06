@@ -25,10 +25,10 @@ const AddCollectionFormRequiredFields = ({ register }: MyProps) => {
         />
       </Form.Group>
       <Form.Select {...register("topic")}>
-        <option>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="Books">Books</option>
+        <option value="Movies">Movies</option>
+        <option value="Phones">Phones</option>
+        <option value="Metals">Metals</option>
       </Form.Select>
     </>
   );

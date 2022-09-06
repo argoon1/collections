@@ -9,14 +9,13 @@ const CollectionItemDetailed = () => {
   if (!itemData) return <Loading />;
   const { likes, comments, id, name, tags, ...itemAdditionalFields } = itemData;
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "75%", margin: "0 auto", padding: "3rem" }}>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <Card.Text>tags {tags}</Card.Text>
+        <Card.Text>tags {tags.join(" ")}</Card.Text>
         <Card.Text>id:{id}</Card.Text>
         {}
       </Card.Body>
-      {comments}
       <CollectionItemLikes likes={likes} itemId={id} />
 
       <CollectionItemDetails

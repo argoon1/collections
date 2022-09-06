@@ -1,11 +1,9 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { axiosMain } from "../../../api/axiosConfig";
 import { useState } from "react";
-import axios from "axios";
-import { useAuth } from "../../../Context/AuthProvider";
 import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -29,7 +27,9 @@ const useAddCollectionItem = () => {
         ...getAxiosPostOptions(data)
       );
       alert("item added");
-    } catch (e) {}
+    } catch (e) {
+      setAddItemError("adding failed");
+    }
   }
   return {
     register,

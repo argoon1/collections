@@ -1,12 +1,12 @@
 const allowedOrigins = [
-  "https://main--tranquil-tapioca-38ff35.netlify.app/",
+  "https://main--tranquil-tapioca-38ff35.netlify.app",
   "http://localhost:3000",
 ];
 
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
+      callback(null, { origin: true });
     } else {
       callback(new Error("Not allowed by CORS"));
     }

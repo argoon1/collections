@@ -13,7 +13,7 @@ const CollectionItem = ({
   item,
   getData,
 }: CollectionItemProps) => {
-  const { likes, comments, id, name, tags } = item;
+  const { likes, id, name, tags } = item;
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -22,17 +22,11 @@ const CollectionItem = ({
         <Card.Text>id:{id}</Card.Text>
         {}
       </Card.Body>
-      {comments}
       <CollectionItemLikes likes={likes} itemId={id} getData={getData} />
 
       <Card.Link href={`/collections/collection/item/${id}`}>
-        Card Link
+        see item details
       </Card.Link>
-      {isUserOwner && (
-        <Card.Link href={`/collections/collection/item/edit/${id}`}>
-          Card Link
-        </Card.Link>
-      )}
     </Card>
   );
 };
