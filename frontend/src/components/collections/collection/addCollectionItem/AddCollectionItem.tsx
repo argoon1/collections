@@ -9,13 +9,15 @@ import styles from "./addCollectionItem.module.css";
 type AddCollectionItemProps = {
   id: string;
   additionalFields: AdditionalFieldsCollection;
+  getRequestedCollection: () => Promise<void>;
 };
 const AddCollectionItem = ({
   id,
   additionalFields: { string, integer, multiline, checkboxes },
+  getRequestedCollection,
 }: AddCollectionItemProps) => {
   const { register, handleSubmit, errors, submitItem, addItemError } =
-    useAddCollectionItem(id);
+    useAddCollectionItem(id, getRequestedCollection);
   return (
     <Container
       className={`mx-auto mt-5 ${styles.addCollectionItemForm}`}

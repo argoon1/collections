@@ -13,7 +13,10 @@ const schema = yup.object().shape({
   tags: yup.string().required(),
 });
 
-const useAddCollectionItem = (id: string) => {
+const useAddCollectionItem = (
+  id: string,
+  getRequestedCollection: () => Promise<void>
+) => {
   const navigate = useNavigate();
   const [addItemError, setAddItemError] = useState("");
   const {

@@ -1,17 +1,17 @@
 import { User } from "../useUsersDashboard";
+import styles from "./dashboardBody.module.css";
 type DashboardBodyProps = {
   users: User[];
   isCheckedUser: (email: string) => boolean;
   checkUser: (email: string) => void;
 };
-
 const DashboardBody = ({
   users,
   isCheckedUser,
   checkUser,
 }: DashboardBodyProps) => {
   return (
-    <tbody>
+    <tbody className={styles.dashboardBody}>
       {users.map((user) => (
         <tr>
           {Object.values(user).map((userData, idx) => {
@@ -24,7 +24,7 @@ const DashboardBody = ({
                     onClick={() => checkUser(user.email)}
                   ></input>
                 )}
-                <td>{"a"}</td>
+                <td>{userData}</td>
               </>
             );
           })}

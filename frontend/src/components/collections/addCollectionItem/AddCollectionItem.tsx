@@ -12,7 +12,6 @@ const AddCollectionItem = () => {
       className={`mx-auto mt-5 ${styles.addCollectionItemForm}`}
       fluid="sm"
     >
-      asdasdasdas
       <Form onSubmit={handleSubmit(submitItem)}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>

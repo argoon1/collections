@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import { FormErrors } from "../../../../../formErrors/FormErrors";
 import { useAddNewCommentForm } from "./useAddNewCommentForm";
-
+import { Alert } from "react-bootstrap";
 const AddNewCommentForm = () => {
   const { register, handleSubmit, submitComment, errors, addCommentError } =
     useAddNewCommentForm();
@@ -19,7 +19,7 @@ const AddNewCommentForm = () => {
       <Button variant="primary" type="submit">
         add comment
       </Button>
-      <FormErrors errors={errors} fetchError={addCommentError} />
+      {addCommentError && <Alert variant="dange">{addCommentError}</Alert>}
     </Form>
   );
 };

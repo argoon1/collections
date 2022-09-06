@@ -5,6 +5,7 @@ import { useTheme } from "../../Context/themeProvider/ThemeProvider";
 export function UserNavigation() {
   const { userExists, userHasRole, logout } = useNavigation();
   const { toogleTheme, theme } = useTheme();
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>

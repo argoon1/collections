@@ -7,6 +7,7 @@ import { axiosMain } from "../../../api/axiosConfig";
 import axios from "axios";
 import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 import { useAuth } from "../../../Context/authProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 const ADD_COLLECTION = "/users/collections/add";
 type CollectionDataRequired = {
   name: string;
@@ -30,6 +31,7 @@ const schema = yup.object().shape({
   topic: yup.string().required(),
 });
 const useAddCollectionForm = () => {
+  const navigate = useNavigate();
   const [addCollectionFormError, setAddCollectionFormError] = useState("");
   function handleCollectionError(e: unknown) {
     if (axios.isAxiosError(e) && e.status === "400") {
@@ -55,6 +57,8 @@ const useAddCollectionForm = () => {
         ADD_COLLECTION,
         ...getAxiosPostOptions(formatedAdditionFieldsData)
       );
+      alert("collection added");
+      navigate("/collections");
     } catch (e) {
       handleCollectionError(e);
     }

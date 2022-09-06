@@ -18,7 +18,11 @@ const Collection = () => {
         <p>{description}</p>
       </header>
       {isUserOwner && (
-        <AddCollectionItem id={id} additionalFields={additionalFields} />
+        <AddCollectionItem
+          id={id}
+          additionalFields={additionalFields}
+          getRequestedCollection={getRequestedCollection}
+        />
       )}
       <Container
         style={{
