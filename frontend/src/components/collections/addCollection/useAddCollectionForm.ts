@@ -41,7 +41,6 @@ const useAddCollectionForm = () => {
       Object.entries(data)
         .map(([name, value]) => {
           if (name === "description" || name === "name") return [name, value];
-          console.log(name);
           return [name, value.match(/[^,][a-zA-Z\s]+/gi)];
         })
         .filter(([_, value]) => value && value[0])

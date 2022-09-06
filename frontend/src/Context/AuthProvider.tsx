@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: ContextProviderProps) => {
     roles: null,
     accessToken: null,
   });
-  console.log("context", userData);
   return (
     <AuthContext.Provider
       value={{ userData, setUserData, persist, setPersist }}

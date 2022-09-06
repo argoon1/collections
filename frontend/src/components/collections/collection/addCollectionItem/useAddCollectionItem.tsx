@@ -23,7 +23,6 @@ const useAddCollectionItem = (id: string) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  console.log(errors, "er");
   function handleAddItemError(e: unknown) {
     if (axios.isAxiosError(e)) {
       const status = e.status;
@@ -43,14 +42,12 @@ const useAddCollectionItem = (id: string) => {
   }
   async function submitItem(data: any) {
     const { tags } = data;
-    console.log(data);
-    //validate tags seperated by coma
+
     try {
       await axiosMain.post(
         `/users/collections/collection/additem/${id}`,
         ...getAxiosPostOptions({ ...data, tags: tags.split(",") })
       );
-      console.log(data);
     } catch (e) {}
   }
   return {

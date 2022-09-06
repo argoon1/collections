@@ -6,7 +6,6 @@ export interface MyProps {
   register: UseFormRegister<FieldValues & CollectionData>;
 }
 const AddCollectionFormOptionalFields = ({ register }: MyProps) => {
-  console.log(register);
   return (
     <>
       <p>Enter additional fields names seperated by commas</p>

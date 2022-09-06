@@ -23,12 +23,12 @@ const useAddCollectionItem = () => {
   const [addItemError, setAddItemError] = useState("");
   const { id } = useParams();
   async function submitItem(data: any) {
-    console.log(data, "SUB");
     try {
       await axiosMain.post(
         `/users/collections/collection/additem/${id}`,
         ...getAxiosPostOptions(data)
       );
+      alert("item added");
     } catch (e) {}
   }
   return {

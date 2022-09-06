@@ -31,7 +31,6 @@ const useUpdateCollectionItem = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  console.log(errors, "er");
   function handleAddItemError(e: unknown) {
     if (axios.isAxiosError(e)) {
       const status = e.status;
@@ -49,13 +48,11 @@ const useUpdateCollectionItem = () => {
     }
     setAddItemError("login failed");
   }
-  console.log(itemData);
   function getAdditionalFieldsFormatted(data: any) {
     if (!itemData) return;
     const additionalFields = Object.entries(data).filter(([fieldName]) =>
       additionalFieldsNames.includes(fieldName)
     );
-    console.log(additionalFields, "ADD");
   }
   getAdditionalFieldsFormatted(itemData);
   async function submitItem(data: any) {
@@ -66,10 +63,8 @@ const useUpdateCollectionItem = () => {
         `/users/collections/collection/additem/${id}`,
         ...getAxiosPostOptions({ ...data, tags: tags.split(",") })
       );
-      console.log(data);
     } catch (e) {}
   }
-  console.log(itemData);
   useEffect(() => {
     alert(id);
     if (id) getItemData(id);

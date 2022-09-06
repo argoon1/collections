@@ -15,7 +15,6 @@ const DashboardBody = ({
       {users.map((user) => (
         <tr>
           {Object.values(user).map((userData, idx) => {
-            console.log(userData, "USER DATAS");
             return (
               <>
                 {idx === 0 && (
