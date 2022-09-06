@@ -1,4 +1,4 @@
-import { Navigation } from "./components/navigation/Navigation";
+import { UserNavigation } from "./components/userNavigation/UserNavigation";
 import { Search } from "./components/search/Search";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes/Routes";
@@ -11,7 +11,7 @@ function App() {
       <BackgroundTheme>
         <AuthProvider>
           <CollectionItemProvider>
-            <Navigation />
+            <UserNavigation />
             <Search />
             <Routes />
           </CollectionItemProvider>

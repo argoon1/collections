@@ -1,10 +1,10 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useNavigation } from "./useNavigation";
+import { useNavigation } from "./useUserNavigation";
 import { Button } from "react-bootstrap";
 
-export function Navigation() {
+export function UserNavigation() {
   const { userExists, userHasRole, logout } = useNavigation();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
