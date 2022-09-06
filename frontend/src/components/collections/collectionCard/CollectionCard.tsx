@@ -1,11 +1,12 @@
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 type CollectionCardProps = {
   name: string;
   description: string;
   topic: string;
   id: string;
 };
-import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
 const CollectionCard = ({
   name,
   description,

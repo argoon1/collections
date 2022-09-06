@@ -22,7 +22,6 @@ const Routes = () => {
         <Route element={<PrivateRoutes allowedRoles={["user", "admin"]} />}>
           <Route path="/admindashboard" element={<AdminDashboard />} />
         </Route>
-        <Route path={"/"} element={<UserLogin />} />
         <Route path={"/login"} element={<UserLogin />} />
         <Route path={"/register"} element={<UserRegister />} />
         <Route path={"/home"} element={<Home />} />
