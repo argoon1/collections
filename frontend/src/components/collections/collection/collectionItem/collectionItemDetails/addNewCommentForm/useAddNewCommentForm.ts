@@ -6,7 +6,7 @@ import { useState } from "react";
 import { axiosMain } from "../../../../../../api/axiosConfig";
 import { useParams } from "react-router-dom";
 import { getAxiosPostOptions } from "../../../../../../utils/axiosUtils";
-import { useCollectionItem } from "../../../../../../Context/CollectionItemProvider";
+import { useCollectionItem } from "../../../../../../Context/collectionItemProvider/CollectionItemProvider";
 import axios from "axios";
 export type CommentData = {
   commentText: string;

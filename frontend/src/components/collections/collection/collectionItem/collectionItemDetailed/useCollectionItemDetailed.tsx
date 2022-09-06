@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useCollectionItem } from "../../../../../Context/CollectionItemProvider";
+import { useCollectionItem } from "../../../../../Context/collectionItemProvider/CollectionItemProvider";
 const useCollectionItemDetailed = () => {
   const { itemData, isUserOwner, getItemData } = useCollectionItem();
   const { itemId } = useParams();

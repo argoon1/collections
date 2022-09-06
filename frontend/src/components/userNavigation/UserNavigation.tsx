@@ -1,11 +1,10 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigation } from "./useUserNavigation";
 import { Button } from "react-bootstrap";
-
+import { useTheme } from "../../Context/themeProvider/ThemeProvider";
 export function UserNavigation() {
   const { userExists, userHasRole, logout } = useNavigation();
+  const { toogleTheme, theme } = useTheme();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -24,6 +23,9 @@ export function UserNavigation() {
               <Nav.Link href="/admindashboard">Dashboard</Nav.Link>
             )}
           </Nav>
+          <Button onClick={toogleTheme}>
+            switch to {theme === "dark" ? "light" : "dark"} mode
+          </Button>
           <Nav>
             {userExists ? (
               <Button onClick={logout}>Logout</Button>

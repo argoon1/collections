@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { axiosMain } from "../../../../../api/axiosConfig";
-import { useCollectionItem } from "../../../../../Context/CollectionItemProvider";
+import { useCollectionItem } from "../../../../../Context/collectionItemProvider/CollectionItemProvider";
 const useCollectionItemLikes = () => {
   const { itemId } = useParams();
   const { getItemData } = useCollectionItem();

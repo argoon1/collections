@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useAuth } from "../Context/AuthProvider";
+import { useAuth } from "../Context/authProvider/AuthProvider";
 import { AdditionalFieldsNames } from "../components/collections/addCollection/useAddCollectionForm";
 export type AdditionalFieldsCollection = Partial<
   Record<AdditionalFieldsNames, [string, string?, string?]>

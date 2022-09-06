@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useCollectionItem } from "../../../Context/CollectionItemProvider";
+import { useCollectionItem } from "../../../Context/collectionItemProvider/CollectionItemProvider";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

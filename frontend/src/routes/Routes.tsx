@@ -41,4 +41,4 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+export { Routes };

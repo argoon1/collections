@@ -1,5 +1,5 @@
 import { axiosPrivate } from "../api/axiosConfig";
-import { useAuth } from "../Context/AuthProvider";
+import { useAuth } from "../Context/authProvider/AuthProvider";
 
 export const useRefreshToken = () => {
   const { setUserData } = useAuth();

@@ -1,10 +1,8 @@
-import axios from "axios";
-import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { axiosMain } from "../api/axiosConfig";
-import { Item } from "../sharedTypes/collectionSharedTypes";
+import React, { useContext } from "react";
+import { axiosMain } from "../../api/axiosConfig";
+import { Item } from "../../sharedTypes/collectionSharedTypes";
 import { useState } from "react";
-import { ContextProviderProps } from "./contextSharedTypes";
+import { ContextProviderProps } from "../contextSharedTypes";
 type CollectionItemContextValue = {
   itemData: null | Item;
   isUserOwner: boolean;

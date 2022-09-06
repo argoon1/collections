@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { AllowedRoles } from "../sharedTypes/authTypes";
+import { AllowedRoles } from "../../sharedTypes/authTypes";
 import { useLocalStorage } from "usehooks-ts";
-import { ContextProviderProps } from "./contextSharedTypes";
+import { ContextProviderProps } from "../contextSharedTypes";
 export const initialUserData = {
   roles: null,
   accessToken: null,

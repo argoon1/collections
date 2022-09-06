@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useAuth } from "../../../../../Context/AuthProvider";
+import { useAuth } from "../../../../../Context/authProvider/AuthProvider";
 import { useCollectionItemLikes } from "./useCollectionItemLikes";
 import styles from "./collectionItemLikes.module.css";
 type CollectionLikesProps = {
