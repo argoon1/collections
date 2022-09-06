@@ -1,20 +1,28 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useCollectionItem } from "../../../Context/CollectionItemProvider";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { axiosMain } from "../../../api/axiosConfig";
 import { useState } from "react";
 import axios from "axios";
-import { axiosMain } from "../../../../api/axiosConfig";
-import { getAxiosPostOptions } from "../../../../utils/axiosUtils";
-const LOGIN_URL = "/sessions/login";
-
+import { getAxiosPostOptions } from "../../../utils/axiosUtils";
 const schema = yup.object().shape({
   name: yup.string().required(),
   tags: yup.string().required(),
 });
-
-const useAddCollectionItem = (id: string) => {
-  const navigate = useNavigate();
+const additionalFieldsNames = [
+  "string",
+  "integer",
+  "multiline",
+  "checkboxes",
+  "date",
+];
+const useUpdateCollectionItem = () => {
+  const { id } = useParams();
+  const { itemData, getItemData } = useCollectionItem();
   const [addItemError, setAddItemError] = useState("");
   const {
     register,
@@ -41,9 +49,17 @@ const useAddCollectionItem = (id: string) => {
     }
     setAddItemError("login failed");
   }
+  console.log(itemData);
+  function getAdditionalFieldsFormatted(data: any) {
+    if (!itemData) return;
+    const additionalFields = Object.entries(data).filter(([fieldName]) =>
+      additionalFieldsNames.includes(fieldName)
+    );
+    console.log(additionalFields, "ADD");
+  }
+  getAdditionalFieldsFormatted(itemData);
   async function submitItem(data: any) {
     const { tags } = data;
-    console.log(data);
     //validate tags seperated by coma
     try {
       await axiosMain.post(
@@ -53,13 +69,12 @@ const useAddCollectionItem = (id: string) => {
       console.log(data);
     } catch (e) {}
   }
-  return {
-    register,
-    handleSubmit,
-    errors,
-    submitItem,
-    addItemError,
-  };
+  console.log(itemData);
+  useEffect(() => {
+    alert(id);
+    if (id) getItemData(id);
+  }, [id]);
+  return { itemData, register, handleSubmit, errors, submitItem };
 };
 
-export { useAddCollectionItem };
+export default useUpdateCollectionItem;

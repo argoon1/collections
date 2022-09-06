@@ -6,14 +6,12 @@ import { CollectionItemDetails } from "../collectionItemDetails/CollectionItemDe
 type CollectionItemProps = {
   isUserOwner: boolean;
   item: Item;
-  getItemData?: () => Promise<void>;
-  showDetails?: boolean;
+  getData: () => Promise<void>;
 };
 const CollectionItem = ({
   isUserOwner,
   item,
-  showDetails,
-  getItemData,
+  getData,
 }: CollectionItemProps) => {
   const { likes, comments, id, name, tags } = item;
   return (
@@ -25,12 +23,16 @@ const CollectionItem = ({
         {}
       </Card.Body>
       {comments}
-      <CollectionItemLikes likes={likes} itemId={id} />
+      <CollectionItemLikes likes={likes} itemId={id} getData={getData} />
 
       <Card.Link href={`/collections/collection/item/${id}`}>
         Card Link
       </Card.Link>
-      {isUserOwner && "enable edit"}
+      {isUserOwner && (
+        <Card.Link href={`/collections/collection/item/edit/${id}`}>
+          Card Link
+        </Card.Link>
+      )}
     </Card>
   );
 };

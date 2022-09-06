@@ -3,7 +3,8 @@ import { CollectionItem } from "./collectionItem/collectionListItem/CollectionLi
 import { Loading } from "../../loading/Loading";
 import { AddCollectionItem } from "./addCollectionItem/AddCollectionItem";
 const Collection = () => {
-  const { requestedCollection, isUserOwner } = useCollection();
+  const { requestedCollection, isUserOwner, getRequestedCollection } =
+    useCollection();
   if (!requestedCollection) return <Loading />;
   const { name, description, topic, id, items, ...additionalFields } =
     requestedCollection;
@@ -16,7 +17,11 @@ const Collection = () => {
         <AddCollectionItem id={id} additionalFields={additionalFields} />
       )}
       {items.map((item) => (
-        <CollectionItem item={item} isUserOwner />
+        <CollectionItem
+          item={item}
+          isUserOwner
+          getData={getRequestedCollection}
+        />
       ))}
     </>
   );

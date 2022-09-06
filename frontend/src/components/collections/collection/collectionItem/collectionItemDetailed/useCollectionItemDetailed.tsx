@@ -7,7 +7,7 @@ const useCollectionItemDetailed = () => {
   useEffect(() => {
     if (itemId) getItemData(itemId);
   }, [itemId]);
-  return { itemData, isUserOwner };
+  return { itemData, isUserOwner, getItemData };
 };
 
 export { useCollectionItemDetailed };

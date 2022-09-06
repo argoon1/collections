@@ -19,7 +19,6 @@ const CollectionItemContext = React.createContext<CollectionItemContextValue>(
   CollectionItemContexInitialValue
 );
 export const CollectionItemProvider = ({ children }: ContextProviderProps) => {
-  const { itemId } = useParams();
   const [itemData, setItemData] = useState<null | Item>(null);
   const [isUserOwner, setIsUserOwner] = useState(false);
   async function getItemData(itemId: string) {

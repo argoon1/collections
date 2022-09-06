@@ -1,21 +1,12 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { AdditionalFieldsCollection } from "../../../../sharedTypes/collectionSharedTypes";
-import { Alert } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import { Container } from "react-bootstrap";
-import { useAddCollectionItem } from "./useAddCollectionItem";
-//import DatePicker from "react-datepicker";
-type AddCollectionItemProps = {
-  id: string;
-  additionalFields: AdditionalFieldsCollection;
-};
-const AddCollectionItem = ({
-  id,
-  additionalFields: { string, integer, multiline, checkboxes, date },
-}: AddCollectionItemProps) => {
-  const { register, handleSubmit, errors, submitItem, addItemError } =
-    useAddCollectionItem(id);
+import { Form, Container, Button } from "react-bootstrap";
+import { Loading } from "../../loading/Loading";
+import useUpdateCollectionItem from "./useUpdateCollectionItem";
+
+const UpdateCollectionItem = () => {
+  const { itemData, register, handleSubmit, errors, submitItem } =
+    useUpdateCollectionItem();
+  if (!itemData) return <Loading />;
+  const { string, integer, multiline, checkboxes, date } = itemData;
   return (
     <Container className="mx-auto mt-5 " fluid="sm">
       <Form onSubmit={handleSubmit(submitItem)}>
@@ -35,7 +26,7 @@ const AddCollectionItem = ({
             />
           </Form.Group>
         </Form.Group>
-        {string?.map((fieldName) => (
+        {/* {string?.map((fieldName) => (
           <Form.Group className="mb-3" controlId={fieldName}>
             <Form.Label>{fieldName}</Form.Label>
             <Form.Control
@@ -81,10 +72,10 @@ const AddCollectionItem = ({
         {Object.values(errors).map((data) => (
           <Alert variant="danger">{(data as any)?.message} </Alert>
         ))}
-        {addItemError && <Alert variant="danger">{addItemError}</Alert>}
+        {addItemError && <Alert variant="danger">{addItemError}</Alert>} */}
       </Form>
     </Container>
   );
 };
 
-export { AddCollectionItem };
+export { UpdateCollectionItem };

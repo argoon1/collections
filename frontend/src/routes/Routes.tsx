@@ -10,6 +10,7 @@ import { AddCollection } from "../pages/addCollection/AddCollection";
 import { UserCollections } from "../pages/userCollections/UserCollections";
 import { CollectionItems } from "../pages/collectionItems/CollectionItems";
 import { CollectionItemDetailed } from "../components/collections/collection/collectionItem/collectionItemDetailed/CollectionItemDetailed";
+import { UpdateCollectionItem } from "../components/collections/updateCollectionItem/UpdateCollectionItem";
 const Routes = () => {
   return (
     <Switch>
@@ -29,6 +30,10 @@ const Routes = () => {
         <Route
           path="/collections/collection/item/:itemId"
           element={<CollectionItemDetailed />}
+        />
+        <Route
+          path="/collections/collection/item/edit/:id"
+          element={<UpdateCollectionItem />}
         />
         <Route path={"/*"} element={<NotFound />} />
       </Route>
