@@ -1,6 +1,6 @@
 import { Routes as Switch, Route } from "react-router-dom";
-import Login from "../pages/login/Login";
-import { Register } from "../pages/register/Register";
+import { UserLogin } from "../pages/userLogin/UserLogin";
+import { UserRegister } from "../pages/userRegister/UserRegister";
 import { NotFound } from "../components/notFound/NotFound";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { Home } from "../pages/home/Home";
@@ -22,9 +22,9 @@ const Routes = () => {
         <Route element={<PrivateRoutes allowedRoles={["user", "admin"]} />}>
           <Route path="/admindashboard" element={<AdminDashboard />} />
         </Route>
-        <Route path={"/"} element={<Login />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/register"} element={<Register />} />
+        <Route path={"/"} element={<UserLogin />} />
+        <Route path={"/login"} element={<UserLogin />} />
+        <Route path={"/register"} element={<UserRegister />} />
         <Route path={"/home"} element={<Home />} />
         <Route path="/collection/:id" element={<CollectionItems />} />
         <Route
