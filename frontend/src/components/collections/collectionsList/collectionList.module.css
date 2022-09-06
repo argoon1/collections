@@ -1,0 +1,3 @@
+.collectionsList :where(h2, h3) {
+  color: var(--primary);
+}

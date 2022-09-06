@@ -5,19 +5,22 @@ import { Alert } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
 import { useAddCollectionItem } from "./useAddCollectionItem";
-//import DatePicker from "react-datepicker";
+import styles from "./addCollectionItem.module.css";
 type AddCollectionItemProps = {
   id: string;
   additionalFields: AdditionalFieldsCollection;
 };
 const AddCollectionItem = ({
   id,
-  additionalFields: { string, integer, multiline, checkboxes, date },
+  additionalFields: { string, integer, multiline, checkboxes },
 }: AddCollectionItemProps) => {
   const { register, handleSubmit, errors, submitItem, addItemError } =
     useAddCollectionItem(id);
   return (
-    <Container className="mx-auto mt-5 " fluid="sm">
+    <Container
+      className={`mx-auto mt-5 ${styles.addCollectionItemForm}`}
+      fluid="sm"
+    >
       <Form onSubmit={handleSubmit(submitItem)}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>{"name"}</Form.Label>
@@ -35,8 +38,8 @@ const AddCollectionItem = ({
             />
           </Form.Group>
         </Form.Group>
-        {string?.map((fieldName) => (
-          <Form.Group className="mb-3" controlId={fieldName}>
+        {string?.map((fieldName, idx) => (
+          <Form.Group className="mb-3" controlId={fieldName} key={idx}>
             <Form.Label>{fieldName}</Form.Label>
             <Form.Control
               {...register(fieldName as string)}
@@ -46,8 +49,8 @@ const AddCollectionItem = ({
             />
           </Form.Group>
         ))}
-        {integer?.map((fieldName) => (
-          <Form.Group className="mb-3" controlId={fieldName}>
+        {integer?.map((fieldName, idx) => (
+          <Form.Group className="mb-3" controlId={fieldName} key={idx}>
             <Form.Label>{fieldName}</Form.Label>
             <Form.Control
               {...register(fieldName as string)}
@@ -56,8 +59,8 @@ const AddCollectionItem = ({
             />
           </Form.Group>
         ))}
-        {multiline?.map((fieldName) => (
-          <Form.Group className="mb-3" controlId={fieldName}>
+        {multiline?.map((fieldName, idx) => (
+          <Form.Group className="mb-3" controlId={fieldName} key={idx}>
             <Form.Label>{fieldName}</Form.Label>
             <Form.Control
               {...register(fieldName as string)}
@@ -66,15 +69,16 @@ const AddCollectionItem = ({
             />
           </Form.Group>
         ))}
-        {checkboxes?.map((fieldName) => (
+        {checkboxes?.map((fieldName, idx) => (
           <Form.Check
+            key={idx}
             type="checkbox"
             id={fieldName}
             label={fieldName}
             {...register(fieldName as string)}
           />
         ))}
-        {date?.map((fieldName) => fieldName)}
+
         <Button variant="primary" type="submit" className="w-100">
           add item
         </Button>

@@ -51,7 +51,7 @@ export const useLoginForm = () => {
       } = await axiosMain.post(LOGIN_URL, ...getAxiosPostOptions(data));
       setUserData({ accessToken, roles });
       setPersist(true);
-      navigate("/collections");
+      navigate("/home");
     } catch (e) {
       handleLoginError(e);
     }

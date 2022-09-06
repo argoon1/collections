@@ -1,6 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "../Context/authProvider/AuthProvider";
 import { AllowedRoles } from "../sharedTypes/authTypes";
+import { NotFound } from "../components/notFound/NotFound";
 type PrivateRoutesProps = {
   allowedRoles: AllowedRoles;
 };
@@ -11,9 +12,9 @@ export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   function userIsAllowed() {
     return roles?.some((role) => allowedRoles.includes(role));
   }
+
   if (userIsAllowed() && accessToken) {
     return <Outlet />;
   }
-  if (accessToken) return <Navigate to="/home" />;
-  return <Navigate to="/login" />;
+  return <NotFound />;
 };

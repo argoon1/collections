@@ -10,8 +10,12 @@ import { AddCollection } from "../pages/addCollection/AddCollection";
 import { UserCollections } from "../pages/userCollections/UserCollections";
 import { CollectionItems } from "../pages/collectionItems/CollectionItems";
 import { CollectionItemDetailed } from "../components/collections/collection/collectionItem/collectionItemDetailed/CollectionItemDetailed";
-import { UpdateCollectionItem } from "../components/collections/updateCollectionItem/UpdateCollectionItem";
+import { useAuth } from "../Context/authProvider/AuthProvider";
 const Routes = () => {
+  const {
+    userData: { roles },
+  } = useAuth();
+
   return (
     <Switch>
       <Route element={<PersistLogin />}>
@@ -31,10 +35,7 @@ const Routes = () => {
           path="/collections/collection/item/:itemId"
           element={<CollectionItemDetailed />}
         />
-        <Route
-          path="/collections/collection/item/edit/:id"
-          element={<UpdateCollectionItem />}
-        />
+
         <Route path={"/*"} element={<NotFound />} />
       </Route>
     </Switch>

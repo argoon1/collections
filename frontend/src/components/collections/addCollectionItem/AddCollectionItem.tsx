@@ -3,12 +3,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
 import { useAddCollectionItem } from "./useAddCollectionItem";
-
+import styles from "./addCollectionItem.module.css";
 const AddCollectionItem = () => {
   const { register, handleSubmit, errors, submitItem, addItemError } =
     useAddCollectionItem();
   return (
-    <Container className="mx-auto mt-5 " fluid="sm">
+    <Container
+      className={`mx-auto mt-5 ${styles.addCollectionItemForm}`}
+      fluid="sm"
+    >
+      asdasdasdas
       <Form onSubmit={handleSubmit(submitItem)}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>

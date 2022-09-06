@@ -6,6 +6,7 @@ import { useState } from "react";
 import { axiosMain } from "../../../api/axiosConfig";
 import axios from "axios";
 import { getAxiosPostOptions } from "../../../utils/axiosUtils";
+import { useAuth } from "../../../Context/authProvider/AuthProvider";
 const ADD_COLLECTION = "/users/collections/add";
 type CollectionDataRequired = {
   name: string;
@@ -17,7 +18,6 @@ const additionalFieldsNames = [
   "string",
   "multiline",
   "checkboxes",
-  "date",
 ] as const;
 export type AdditionalFieldsNames = typeof additionalFieldsNames[number];
 export type CollectionData = CollectionDataRequired &

@@ -1,5 +1,4 @@
 import { UserNavigation } from "./components/userNavigation/UserNavigation";
-import { Search } from "./components/search/Search";
 import { BrowserRouter } from "react-router-dom";
 import { Routes } from "./routes/Routes";
 import { AuthProvider } from "./Context/authProvider/AuthProvider";
@@ -9,16 +8,15 @@ import { ThemeProvider } from "./Context/themeProvider/ThemeProvider";
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider>
-        <BackgroundTheme />
-        <AuthProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <BackgroundTheme />
           <CollectionItemProvider>
             <UserNavigation />
-            <Search />
             <Routes />
           </CollectionItemProvider>
-        </AuthProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -3,6 +3,7 @@ import { useAddCollectionForm } from "./useAddCollectionForm";
 import { AddCollectionFormOptionalFields } from "./addCollectionFormOptionalFields/AddCollectionFormOptionalFields";
 import { AddCollectionFormRequiredFields } from "./addCollectionFormRequiredFields/AddCollectionFormRequiredFields";
 import { FormErrors } from "../../formErrors/FormErrors";
+import styles from "./addCollectionForm.module.css";
 const AddCollectionForm = () => {
   const {
     register,
@@ -12,7 +13,10 @@ const AddCollectionForm = () => {
     addCollectionFormError,
   } = useAddCollectionForm();
   return (
-    <Container className="mx-auto mt-5 w-25" fluid="sm">
+    <Container
+      className={`mx-auto mt-5  ${styles.addCollectionForm}`}
+      fluid="sm"
+    >
       <Form onSubmit={handleSubmit(submitCollection)}>
         <AddCollectionFormRequiredFields register={register} />
         <AddCollectionFormOptionalFields register={register} />

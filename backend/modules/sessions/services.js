@@ -51,8 +51,9 @@ const handleRefreshToken = async (req, res) => {
   const user = await prisma.user.findFirst({
     where: { refreshToken },
   });
-  if (!user) return res.sendStatus(403); //Forbidden
+  if (!user) return res.sendStatus(403);
   const { email, password, roles } = user;
+  console.log(roles);
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
     if (err || user.username !== decoded.username) return res.sendStatus(403);
     const accessToken = jwt.sign(

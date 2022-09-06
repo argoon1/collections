@@ -3,6 +3,7 @@ import { CollectionItem } from "./collectionItem/collectionListItem/CollectionLi
 import { Loading } from "../../loading/Loading";
 import { AddCollectionItem } from "./addCollectionItem/AddCollectionItem";
 import { Container } from "react-bootstrap";
+import styles from "./collection.module.css";
 const Collection = () => {
   const { requestedCollection, isUserOwner, getRequestedCollection } =
     useCollection();
@@ -11,9 +12,11 @@ const Collection = () => {
     requestedCollection;
   return (
     <>
-      <h1>{name}</h1>
-      <h2>{topic}</h2>
-      <p>{description}</p>
+      <header className={styles.collectionItemsHeader}>
+        <h1>{name}</h1>
+        <h2>{topic}</h2>
+        <p>{description}</p>
+      </header>
       {isUserOwner && (
         <AddCollectionItem id={id} additionalFields={additionalFields} />
       )}

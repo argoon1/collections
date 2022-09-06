@@ -9,6 +9,7 @@ export const useRefreshToken = () => {
       withCredentials: true,
     });
     const { roles, accessToken } = response.data;
+    console.log(response.data);
     setUserData((prev) => {
       return {
         ...prev,
