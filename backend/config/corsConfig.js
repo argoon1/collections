@@ -1,5 +1,5 @@
 const allowedOrigins = [
-  "https://frozen-anchorage-58528.herokuapp.com/",
+  "https://main--tranquil-tapioca-38ff35.netlify.app/",
   "http://localhost:3000",
 ];
 
